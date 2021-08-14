@@ -21,3 +21,5 @@ cd CoffeeMachine
 export PYTHONPATH=$PWD
 pytest src/tests
 ```
+- [Source Code](./src/main)
+- [Test](./src/tests)
