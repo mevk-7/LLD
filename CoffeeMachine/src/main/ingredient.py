@@ -13,10 +13,22 @@ class Ingredient:
     able to access the ingredient
     """
     def __init__(self, name, quantity):
-        self.name = name
-        self.quantity = quantity
-        self.lock = RLock()
-        self.timeout = 30  # 30 sec
+        self._name = name
+        self._quantity = quantity
+        self._lock = RLock()
+        self._timeout = 30  # 30 sec
+
+    def get_quantity(self):
+        """
+        return: quantity available
+        """
+        return self._quantity
+
+    def get_name(self):
+        """
+        return: name of ingredient
+        """
+        return self._name
 
     def use_ingredient(self, quantity):
         """
@@ -27,12 +39,12 @@ class Ingredient:
         if quantity < 0:
             raise Exception("Cannot subtract quantity "
                             "= {}".format(quantity))
-        self.lock.acquire(timeout=self.timeout)
-        if self.quantity < quantity:
-            self.lock.release()
+        self._lock.acquire(timeout=self._timeout)
+        if self._quantity < quantity:
+            self._lock.release()
             return False
-        self.quantity -= quantity
-        self.lock.release()
+        self._quantity -= quantity
+        self._lock.release()
         return True
 
     def add_quantity(self, quantity):
@@ -42,7 +54,7 @@ class Ingredient:
         """
         if quantity < 0:
             raise Exception("Cannot add negative quantity")
-        self.lock.acquire(timeout=self.timeout)
-        self.quantity += quantity
-        self.lock.release()
+        self._lock.acquire(timeout=self._timeout)
+        self._quantity += quantity
+        self._lock.release()
 

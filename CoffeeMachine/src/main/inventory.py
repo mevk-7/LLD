@@ -10,8 +10,8 @@ class Inventory:
     """
     def __init__(self, logger):
 
-        self.ingredients = dict()
-        self.logger = logger
+        self._ingredients = dict()
+        self._logger = logger
 
     def get_current_inventory(self):
         """
@@ -20,8 +20,8 @@ class Inventory:
         """
 
         available_ingredient = {}
-        for ingredient in self.ingredients:
-            available_ingredient[ingredient] = self.ingredients[ingredient].quantity
+        for ingredient in self._ingredients:
+            available_ingredient[ingredient] = self._ingredients[ingredient]._quantity
 
         return available_ingredient
 
@@ -34,11 +34,11 @@ class Inventory:
         """
         for item in total_items_quantity.keys():
             quantity = total_items_quantity[item]
-            if item in self.ingredients:
-                self.ingredients[item].add_quantity(quantity)
+            if item in self._ingredients:
+                self._ingredients[item].add_quantity(quantity)
             else:
                 ingredient = Ingredient(item, quantity)
-                self.ingredients[item] = ingredient
+                self._ingredients[item] = ingredient
 
     def check_availability(self, ingredients_list):
         """
@@ -49,11 +49,11 @@ class Inventory:
         :return: Boolean value whether all ingredient available or not
         """
         for ingredient in ingredients_list:
-            ingredient_name = ingredient.name
-            if ingredient_name in self.ingredients \
-                    and self.ingredients[ingredient_name].quantity < ingredient.quantity:
+            ingredient_name = ingredient.get_name()
+            if ingredient_name in self._ingredients \
+                    and self._ingredients[ingredient_name].get_quantity() < ingredient.get_quantity():
                 return False
-            elif ingredient_name not in self.ingredients:
+            elif ingredient_name not in self._ingredients:
                 return False
         return True
 
@@ -69,8 +69,8 @@ class Inventory:
         is_possible = True
         for ingredient_name in ingredients_dict.keys():
             quantity = ingredients_dict[ingredient_name]
-            if ingredient_name in self.ingredients and \
-                    self.ingredients[ingredient_name].use_ingredient(quantity):
+            if ingredient_name in self._ingredients and \
+                    self._ingredients[ingredient_name].use_ingredient(quantity):
                 ingredient_used[ingredient_name] = quantity
             else:
                 is_possible = False
@@ -82,7 +82,7 @@ class Inventory:
 
         # Rollback
         for ingredient in ingredient_used.keys():
-            self.ingredients[ingredient].add_quantity(ingredient_used[ingredient])
+            self._ingredients[ingredient].add_quantity(ingredient_used[ingredient])
         return False
 
 

@@ -15,7 +15,11 @@ class Beverage:
         :param ingredients: dictionary ('ingredient': quantity)
         """
         self.name = name
-        self.ingredients = ingredients
+        self._ingredients = ingredients
+
+    def get_ingredients(self):
+        return self._ingredients
+
 
 
 
