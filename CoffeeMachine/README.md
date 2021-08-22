@@ -23,3 +23,8 @@ pytest src/tests
 ```
 - [Source Code](./src/main)
 - [Test](./src/tests)
+
+#### Class Diagram
+
+![Coffee_machine](https://user-images.githubusercontent.com/29228903/130355407-672c304b-86b1-43bd-8100-950214e1ebec.png)
+
