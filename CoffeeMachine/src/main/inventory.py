@@ -40,15 +40,15 @@ class Inventory:
                 ingredient = Ingredient(item, quantity)
                 self.ingredients[item] = ingredient
 
-    def check_availability(self, ingredients_dict):
+    def check_availability(self, ingredients_list):
         """
         this function checks availability of ingredient provided
         dict of ingredient where key is ingredient name and value
         is quantity required
-        :param ingredients_dict:
-        :return:
+        :param ingredients_list: list of ingredients
+        :return: Boolean value whether all ingredient available or not
         """
-        for ingredient in ingredients_dict:
+        for ingredient in ingredients_list:
             ingredient_name = ingredient.name
             if ingredient_name in self.ingredients \
                     and self.ingredients[ingredient_name].quantity < ingredient.quantity:
