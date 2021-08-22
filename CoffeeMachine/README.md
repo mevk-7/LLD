@@ -25,6 +25,6 @@ pytest src/tests
 - [Test](./src/tests)
 
 #### Class Diagram
+![Coffee_machine](https://user-images.githubusercontent.com/29228903/130356865-07d0494f-3068-457b-9107-005785a0b9bc.png)
 
-![Coffee_machine](https://user-images.githubusercontent.com/29228903/130355407-672c304b-86b1-43bd-8100-950214e1ebec.png)
 
