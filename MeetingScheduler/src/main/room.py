@@ -11,14 +11,14 @@ class RoomType(Enum):
 
 class Room:
 
-    __slots__ = ["type", "id", "_calender"]
-    type: RoomType
-    id: str
+    __slots__ = ["_type", "_id", "_calender"]
+    _type: RoomType
+    _id: str
     calender: List[Tuple[str, int, int]]
 
     def __init__(self, id_, type_):
-        self.type = type_
-        self.id = id_
+        self._type = type_
+        self._id = id_
         self._calender = []
 
     def book(self, meeting_id,  start_time, end_time):
@@ -33,15 +33,17 @@ class Room:
         return True
 
     def get_meeting_history(self):
-        print(f"Meeting happened in room: {self.id} so far ->")
+        print(f"Meeting happened in room: {self._id} so far ->")
         for meeting in self._calender:
             print(f"\t{meeting}")
 
-    def get_type(self) -> RoomType:
-        return self.type
+    @property
+    def type(self) -> RoomType:
+        return self._type
 
-    def get_id(self) -> str:
-        return self.id
+    @property
+    def id(self) -> str:
+        return self._id
 
 
 

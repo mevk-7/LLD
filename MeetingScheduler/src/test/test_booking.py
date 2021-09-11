@@ -15,3 +15,4 @@ if __name__ == '__main__':
     scheduler.book("Marvel Meeting", 2, 7, RoomType.LARGE)
     scheduler.book("Marvel Meeting 2", 2, 5, RoomType.SMALL)
     scheduler.book("Batman secrete meeting", 6, 9, RoomType.LARGE)
+    scheduler.book("Avenger secrete meeting", 7, 8, RoomType.LARGE)

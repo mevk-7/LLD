@@ -11,8 +11,8 @@ class Scheduler:
 
     def book(self, meeting_id: str, start: int, end: int, room_type: RoomType) -> bool:
         for room in self.rooms:
-            if room.get_type() == room_type and room.book(meeting_id, start, end):
-                print(f"Room  {room.get_id()} booked for meeting {meeting_id}")
+            if room.type == room_type and room.book(meeting_id, start, end):
+                print(f"Room  {room.id} booked for meeting {meeting_id}")
                 return True
         print(f"No room available for meeting :{meeting_id} of type {room_type}")
         return False
